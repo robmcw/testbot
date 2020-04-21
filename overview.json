@@ -1,0 +1,129 @@
+blocks: [
+          	{
+		"type": "section",
+		"text": {
+			"type": "plain_text",
+			"text": "Hi there, I'll be making things a little less chaotic around here. Just pop in some project details below and we'll get going setting up reminders and project info.",
+			"emoji": true
+		}
+	},
+	{
+		"type": "input",
+    "block_id": 'project_members',
+		"element": {
+			"type": "plain_text_input",
+      "action_id": "project_members"
+		},
+		"label": {
+			"type": "plain_text",
+			"text": "Team members?",
+			"emoji": true
+		}
+	},
+	{
+		"type": "input",
+    "block_id": "response_time",
+		"element": {
+			"type": "checkboxes",
+      "action_id": "response_time",
+			"options": [
+				{
+					"text": {
+						"type": "plain_text",
+						"text": "Immediate",
+						"emoji": true
+					},
+					"value": "Immediate"
+				},
+				{
+					"text": {
+						"type": "plain_text",
+						"text": "Sub two hours",
+						"emoji": true
+					},
+					"value": "two_hours"
+				},
+				{
+					"text": {
+						"type": "plain_text",
+						"text": "Sub eight hours",
+						"emoji": true
+					},
+					"value": "eight_hours"
+				}
+			]
+		},
+		"label": {
+			"type": "plain_text",
+			"text": "Response time?",
+			"emoji": true
+		}
+	},
+	{
+		"type": "context",
+		"elements": [
+			{
+				"type": "mrkdwn",
+				"text": "This will be pinned to the channel. "
+			}
+		]
+	},
+	{
+		"type": "input",
+    "block_id": "weekly_meeting_date",
+		"element": {
+			"type": "datepicker",
+      "action_id": "weekly_meeting_date",
+			"initial_date": "2020-02-17",
+			"placeholder": {
+				"type": "plain_text",
+				"text": "Select a date",
+				"emoji": true
+			}
+		},
+		"label": {
+			"type": "plain_text",
+			"text": "Weekly meeting date",
+			"emoji": true
+		}
+	},
+	{
+		"type": "context",
+		"elements": [
+			{
+				"type": "mrkdwn",
+				"text": "We'll auto schedule a reminder to all members. "
+			}
+		]
+	},
+	{
+		"type": "input",
+    "block_id": 'project_intro',
+		"element": {
+			"type": "plain_text_input",
+      "action_id": 'project_intro',
+			"multiline": true
+		},
+		"label": {
+			"type": "plain_text",
+			"text": "Project intro",
+			"emoji": true
+		}
+	},
+	{
+		"type": "context",
+		"elements": [
+			{
+				"type": "mrkdwn",
+				"text": "This is a great place to link to project docs on GDrive etc.",  
+			}
+		]
+	}
+        ],
+        submit: {
+          type: 'plain_text',
+          text: 'Submit',
+          
+        }
+      }
+    });
