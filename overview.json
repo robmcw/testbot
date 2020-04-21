@@ -1,131 +1,26 @@
-// COMMENT HERE
-
-blocks: [
-          	{
-		"type": "section",
-		"text": {
-			"type": "plain_text",
-			"text": "Hi there, I'll be making things a little less chaotic around here. Just pop in some project details below and we'll get going setting up reminders and project info.",
-			"emoji": true
-		}
-	},
-	{
-		"type": "input",
-    "block_id": 'project_members',
-		"element": {
-			"type": "plain_text_input",
-      "action_id": "project_members"
-		},
-		"label": {
-			"type": "plain_text",
-			"text": "Team members?",
-			"emoji": true
-		}
-	},
-	{
-		"type": "input",
-    "block_id": "response_time",
-		"element": {
-			"type": "checkboxes",
-      "action_id": "response_time",
-			"options": [
-				{
-					"text": {
-						"type": "plain_text",
-						"text": "Immediate",
-						"emoji": true
-					},
-					"value": "Immediate"
-				},
-				{
-					"text": {
-						"type": "plain_text",
-						"text": "Sub two hours",
-						"emoji": true
-					},
-					"value": "two_hours"
-				},
-				{
-					"text": {
-						"type": "plain_text",
-						"text": "Sub eight hours",
-						"emoji": true
-					},
-					"value": "eight_hours"
-				}
-			]
-		},
-		"label": {
-			"type": "plain_text",
-			"text": "Response time?",
-			"emoji": true
-		}
-	},
-	{
-		"type": "context",
-		"elements": [
-			{
-				"type": "mrkdwn",
-				"text": "This will be pinned to the channel. "
-			}
-		]
-	},
-	{
-		"type": "input",
-    "block_id": "weekly_meeting_date",
-		"element": {
-			"type": "datepicker",
-      "action_id": "weekly_meeting_date",
-			"initial_date": "2020-02-17",
-			"placeholder": {
-				"type": "plain_text",
-				"text": "Select a date",
-				"emoji": true
-			}
-		},
-		"label": {
-			"type": "plain_text",
-			"text": "Weekly meeting date",
-			"emoji": true
-		}
-	},
-	{
-		"type": "context",
-		"elements": [
-			{
-				"type": "mrkdwn",
-				"text": "We'll auto schedule a reminder to all members. "
-			}
-		]
-	},
-	{
-		"type": "input",
-    "block_id": 'project_intro',
-		"element": {
-			"type": "plain_text_input",
-      "action_id": 'project_intro',
-			"multiline": true
-		},
-		"label": {
-			"type": "plain_text",
-			"text": "Project intro",
-			"emoji": true
-		}
-	},
-	{
-		"type": "context",
-		"elements": [
-			{
-				"type": "mrkdwn",
-				"text": "This is a great place to link to project docs on GDrive etc.",  
-			}
-		]
-	}
-        ],
-        submit: {
-          type: 'plain_text',
-          text: 'Submit',
-          
+{
+            "mrkdwn_in": ["text"],
+            "author_name": "Learn How to Use OVERVIEW",
+            "author_link": "https://get.slack.help/hc/en-us/articles/206870317-Emoji-reactions",
+            "text": ":white_large_square: *Add an emoji reaction to this message* :thinking_face:",
+            "fields": [{
+                "value": "You can quickly respond to any message on Slack with an emoji reaction. Reactions can be used for any purpose: voting, checking off to-do items, showing excitement."
+            }]
+        }, {
+            "mrkdwn_in": ["text"],
+            "author_name": "Learn How to Pin a Message",
+            "author_link": "https://get.slack.help/hc/en-us/articles/205239997-Pinning-messages-and-files",
+            "text": ":white_large_square: *Pin this message* :round_pushpin:",
+            "fields": [{
+                "value": "Important messages and files can be pinned to the details pane in any channel or direct message, including group messages, for easy reference."
+            }]
+        },{
+            "mrkdwn_in": ["text"],
+            "author_name": "Learn How to Share a Message in Slack",
+            "author_link": "https://get.slack.help/hc/en-us/articles/203274767-Share-messages-in-Slack",
+            "text": ":white_large_square: *Share this Message* :mailbox_with_mail:",
+            "fields": [{
+                "value": "Sharing messages in Slack can help keep conversations on your team organized. And, it's easy to do!"
+            }]
         }
-      }
-    });
+     

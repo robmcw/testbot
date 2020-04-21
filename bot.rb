@@ -1,7 +1,7 @@
 require 'sinatra/base'
 require 'slack-ruby-client'
 
-# This class contains all of the logic for loading, cloning and updating the tutorial message attachments.
+# This class contains all of the logic for loading, cloning and updating the TUTORIAL message attachments.
 class SlackTutorial
   # Store the welcome text for use when sending and updating the tutorial messages
   def self.welcome_text
@@ -37,6 +37,59 @@ class SlackTutorial
     tutorial_item['color'] = '#439FE0'
   end
 end
+
+# RM – This class contains all of the logic for loading, cloning and updating the OVERVIEW message attachments.
+class SlackOverview
+
+    def self.overview_raw
+    [{
+            "mrkdwn_in": ["text"],
+            "author_name": "Learn How to Use OVERVIEW",
+            "author_link": "https://get.slack.help/hc/en-us/articles/206870317-Emoji-reactions",
+            "text": ":white_large_square: *Add an emoji reaction to this message* :thinking_face:",
+            "fields": [{
+                "value": "You can quickly respond to any message on Slack with an emoji reaction. Reactions can be used for any purpose: voting, checking off to-do items, showing excitement."
+            }]
+        }, {
+            "mrkdwn_in": ["text"],
+            "author_name": "Learn How to Pin a Message",
+            "author_link": "https://get.slack.help/hc/en-us/articles/205239997-Pinning-messages-and-files",
+            "text": ":white_large_square: *Pin this message* :round_pushpin:",
+            "fields": [{
+                "value": "Important messages and files can be pinned to the details pane in any channel or direct message, including group messages, for easy reference."
+            }]
+        },{
+            "mrkdwn_in": ["text"],
+            "author_name": "Learn How to Share a Message in Slack",
+            "author_link": "https://get.slack.help/hc/en-us/articles/203274767-Share-messages-in-Slack",
+            "text": ":white_large_square: *Share this Message* :mailbox_with_mail:",
+            "fields": [{
+                "value": "Sharing messages in Slack can help keep conversations on your team organized. And, it's easy to do!"
+            }]
+        }]
+    
+  end
+
+  # Store the overview text for use when sending and updating the overview messages
+  def self.overview_text
+    "Project details are as shown below (this is static text)."
+  end
+
+  # Load the tutorial JSON file into a hash
+  def self.overview_json
+    overview_file = File.read('overview.json')
+    overview_json = JSON.parse(overview_file)
+    attachments = overview_json["attachments"]
+  end
+
+  # Return a new copy of overview_json so each user has their own instance
+  def self.new_overview
+    self.overview_json.deep_dup
+  end
+
+end
+
+####
 
 # This class contains all of the webserver logic for processing incoming requests from Slack.
 class API < Sinatra::Base
@@ -141,6 +194,18 @@ class Events
         as_user: 'true',
         channel: user_id,
         text: "Hello <@#{user_id}>!"
+      )
+    end
+
+         # RM -- INCOMING GREETING AND REPLY WITH JSON
+    # We only care about message events with text and only if that text contains a greeting.
+    if event_data['text'] && event_data['text'].scan(/overview/i).any?
+      # If the message does contain a greeting, say "Hello" back to the user.
+      $teams[team_id]['client'].chat_postMessage(
+        as_user: 'true',
+        channel: user_id,
+        text: "OVERVIEW",
+        attachments: SlackOverview.overview_raw
       )
     end
 
