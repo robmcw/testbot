@@ -41,8 +41,9 @@ end
 # RM – This class contains all of the logic for loading, cloning and updating the OVERVIEW message attachments.
 class SlackOverview
 
-    def self.overview_raw
-    [{
+    def self.overview_raw_works
+
+[{
             "mrkdwn_in": ["text"],
             "author_name": "Learn How to Use OVERVIEW",
             "author_link": "https://get.slack.help/hc/en-us/articles/206870317-Emoji-reactions",
@@ -67,7 +68,45 @@ class SlackOverview
                 "value": "Sharing messages in Slack can help keep conversations on your team organized. And, it's easy to do!"
             }]
         }]
-    
+
+  end
+
+  def self.overview_raw
+[ {
+            "text": "Choose a game to play",
+            "fallback": "You are unable to choose a game",
+            "callback_id": "wopr_game",
+            "color": "#3AA3E3",
+            "attachment_type": "default",
+            "actions": [
+                {
+                    "name": "game",
+                    "text": "Chess",
+                    "type": "button",
+                    "value": "chess"
+                },
+                {
+                    "name": "game",
+                    "text": "Falken's Maze",
+                    "type": "button",
+                    "value": "maze"
+                },
+                {
+                    "name": "game",
+                    "text": "Thermonuclear War",
+                    "style": "danger",
+                    "type": "button",
+                    "value": "war",
+                    "confirm": {
+                        "title": "Are you sure?",
+                        "text": "Wouldn't you prefer a good game of chess?",
+                        "ok_text": "Yes",
+                        "dismiss_text": "No"
+                    }
+                }
+            ]
+        }]
+
   end
 
   # Store the overview text for use when sending and updating the overview messages
